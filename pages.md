@@ -1,10 +1,5 @@
----
-title: "Project Mercury"
-layout: categories
-permalink: /Project-Mercury/
-author_profile: true
----
-(Project Mercury Splash image)
+
+ ![Boom Enemy](BoomBTree.png)
 
 # Project Description
 
@@ -35,11 +30,11 @@ The first step for making any enemy is figuring out what enemy you want to make.
 
 |     |  |
 | -------- | ----------- |
-| I prefer a behaviour first approach building out the structure before implementing the functionality. So I started with a BTree its blackboard. | ![BTree and blackboard combined image](BoomBTree.png)     |
+| I prefer a behaviour first approach building out the structure before implementing the functionality. So I started with a BTree its blackboard. While every agent's Btree has its own needs, the patrol variant follows the same structure.| ![BTree and blackboard combined image](BoomBTree.png)     |
 
 |     |  |
 | --------- | ----------- |
-| ![first iteration of perception handling](BoomBTree.png)    |  The BTree and blackboard were of course followed by an AI Controller. This was followed by testing to ensure everything got called when expected.|
+| ![first iteration of perception handling](BoomBTree.png)    |  The BTree and blackboard were of course followed by an AI Controller. This was followed by testing to ensure everything got called when expected. Testing here is especially important to catch bugs early before reusing the structure for other patrol agents.|
 
 |     |  |
 | -------- | ----------- |
@@ -67,6 +62,9 @@ Later as more of the players actions made produced sound for the enemies they be
 | -------- | ----------- |
 | For the final implementation I began by making a BTree based off the designed behaviour flow chart. While behaviour flow charts are nice, they are not a one to one translation to implementation. I created appropriate states to accomodate the behaviour. Then followed by ensuring each node in the behaviour flow chart was covered. I also added a blackboard to match. | ![new BTree and blackboard](BoomBTree.png)     |
 
+
+|     |  |
+| -------- | ----------- |
 | ![Perception Handling](BoomBTree.png)    | The new BTree also created a need to update the perception handling. Creating the new perception handling also provided the gate to stop the agent from acknowledging sound detection while already having sight of the player. This is once again followed by testing.|
 
 | With the new behaviour implemented it was time to provide the enemies the ability to find cover. For this I used Unreal Engine's Environment Query system. This allowed me to quickly find strategic postions for enemies use during combat. Once the Queries were ready and tested I finished off with implementing the tasks. | ![EQS Debug](BoomBTree.png)     |
@@ -85,4 +83,10 @@ Later as more of the players actions made produced sound for the enemies they be
 
 Throughout the project I learned Unreal Engine and worked with blueprint for the first time. During the early implementation our there were some troubles communicating with the enemy designer on the exact details. This was remedied by behaviour flow charts creating a middle ground between design and implementation.
 
-I also learned that I need to fully explore any engine I'm working with as best I can before implementing code. Having a full Unreal Engine's AI systems, especially the Environmental Query System, would have helped immensely with the first implementation. With what I know now I'm excited to see just how much I can accomplish and learn on my next projects.
+I also learned that I need to fully explore any engine I'm working with as best I can before implementing code. Having a better understanding of Unreal Engine's AI systems, especially the Environmental Query System, would have helped immensely with the first implementation and saved time on the final implementation.
+
+# Links
+
+Want to see what else I've done? Check out my journey on itch.
+
+Want to make something? Shoot me an email. Let's get started!
