@@ -1,4 +1,8 @@
-
+---
+Permalink
+---
+ 
+ 
  ![Project Splash image](Splash.png)
 
 # Project Description
@@ -18,7 +22,7 @@ The goal of this project was to show of the skills of the 14 people on the team 
 
 |     |  |
 | --------- | ----------- |
-| ![Patrol Agent example](Patrol.png)    |  This next enemy type comes in three variants. This enemy type called the Patrol Agent. These enemies  are a classic guy with a gun style. Except in this case they're robots. Each variant patrols a set route until it detects the player then fires upon them with their weapon of choice. A classic assualt rifle, a brutal shotgun, or a deadly sniper. Each makes decisions befitting their weapon, but all run off the same structure. |
+| ![Patrol Agent example](Patrol.png)    |  This next enemy type comes in three variants. This enemy type called the Patrol Agent. These enemies  are a classic guy with a gun style. Except in this case they're robots. Each variant patrols a set route until it detects the player then fires upon them with their weapon of choice. A classic assault rifle, a brutal shotgun, or a deadly sniper. Each makes decisions befitting their weapon, but all run off the same structure. |
 
 
 # Early Designing
