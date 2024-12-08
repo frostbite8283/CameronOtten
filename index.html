@@ -138,12 +138,7 @@
         
         </head>
         <body class="vscode-body vscode-light">
-            <hr>
-<h2 id="title-project-mercurylayout-categoriespermalink-project-mercuryauthor_profile-true">title: &quot;Project Mercury&quot;
-layout: categories
-permalink: /Project-Mercury/
-author_profile: true</h2>
-<p>(Project Mercury Splash image)</p>
+            <p><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\Splash.png" alt="Project Splash image"></p>
 <h1 id="project-description">Project Description</h1>
 <p>Project mercury is a fast paced first person shooter focused on advanced movement
 that aims to make the player feel like an experienced agent. Project mercury is set in the year of 2093 and the player is tasked with retrieving valuable data from Detroit which is now inhabited by only robots.</p>
@@ -160,7 +155,7 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 <tbody>
 <tr>
 <td>I created two types of enemies. This first type is a simple enemy named Boom. This enemy waits around until it detects the player. Once it does it charges them and detonates its deadly surprise. This enemy's behaviour was simple and making it was my introduction to working in Unreal.</td>
-<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\BoomBTree.png" alt="Boom Enemy"></td>
+<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\Boom.png" alt="Boom Agent Example"></td>
 </tr>
 </tbody>
 </table>
@@ -173,7 +168,7 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 </thead>
 <tbody>
 <tr>
-<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\BoomBTree.png" alt="Patrol Variants lined up"></td>
+<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\Patrol.png" alt="Patrol Agent example"></td>
 <td>This next enemy type comes in three variants. This enemy type called the Patrol Agent. These enemies  are a classic guy with a gun style. Except in this case they're robots. Each variant patrols a set route until it detects the player then fires upon them with their weapon of choice. A classic assualt rifle, a brutal shotgun, or a deadly sniper. Each makes decisions befitting their weapon, but all run off the same structure.</td>
 </tr>
 </tbody>
@@ -190,8 +185,8 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 </thead>
 <tbody>
 <tr>
-<td>I prefer a behaviour first approach building out the structure before implementing the functionality. So I started with a BTree its blackboard.</td>
-<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\BoomBTree.png" alt="BTree and blackboard combined image"></td>
+<td>I prefer a behaviour first approach building out the structure before implementing the functionality. So I started with a BTree its blackboard. While every agent's Btree has its own needs, the patrol variant follows the same structure.</td>
+<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\FirstBTree.png" alt="BTree and blackboard combined image"></td>
 </tr>
 </tbody>
 </table>
@@ -204,8 +199,8 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 </thead>
 <tbody>
 <tr>
-<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\BoomBTree.png" alt="first iteration of perception handling"></td>
-<td>The BTree and blackboard were of course followed by an AI Controller. This was followed by testing to ensure everything got called when expected.</td>
+<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\PerceptionOuterV1.png" alt="first iteration of perception handling"></td>
+<td>The BTree and blackboard were of course followed by an AI Controller. This was followed by testing to ensure everything got called when expected. Testing here is especially important to catch bugs early before reusing the structure for other patrol agents.</td>
 </tr>
 </tbody>
 </table>
@@ -219,7 +214,7 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 <tbody>
 <tr>
 <td>Finally, after testing is succesful, its time to implement the task functionality. This included working with our weapons programmer who provided me enemy versions of the guns which would be used by the patrol agents. Finished off with some more testing to make sure there were no immediate bugs.</td>
-<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\BoomBTree.png" alt=" Attacking task image"></td>
+<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\Implementation.png" alt=" Attacking task image"></td>
 </tr>
 </tbody>
 </table>
@@ -236,7 +231,7 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 </thead>
 <tbody>
 <tr>
-<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\BoomBTree.png" alt="Patrol Agent flow chart"></td>
+<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\flowchart.png" alt="Patrol Agent flow chart"></td>
 <td>For the final design the enemy pod once again met this time creating flow charts for each enemy. With the new enemy behaviours created it was now time to address the challenges.</td>
 </tr>
 </tbody>
@@ -251,8 +246,8 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 </thead>
 <tbody>
 <tr>
-<td>For the final implementation I began by making a BTree based off the designed behaviour flow chart. While behaviour flow charts are nice, they are not a one to one translation to implementation. I created appropriate states to accomodate the behaviour. Then followed by ensuring each node in the behaviour flow chart was covered. I also added a blackboard to match.</td>
-<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\BoomBTree.png" alt="new BTree and blackboard"></td>
+<td>For the final implementation I began by making a BTree based off the designed behaviour flow chart. While behaviour flow charts are nice, they are not a one to one translation to implementation. I created appropriate states to accomodate the behaviour. I followed by filling out each state with the appropriate tasks. I also made an accompanying blackboard.</td>
+<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\BTreeV2.png" alt="new BTree and blackboard"></td>
 </tr>
 </tbody>
 </table>
@@ -265,12 +260,25 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 </thead>
 <tbody>
 <tr>
-<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\BoomBTree.png" alt="Perception Handling"></td>
+<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\PerceptionV2.png" alt="Perception Handling"></td>
 <td>The new BTree also created a need to update the perception handling. Creating the new perception handling also provided the gate to stop the agent from acknowledging sound detection while already having sight of the player. This is once again followed by testing.</td>
 </tr>
 </tbody>
 </table>
-<p>| With the new behaviour implemented it was time to provide the enemies the ability to find cover. For this I used Unreal Engine's Environment Query system. This allowed me to quickly find strategic postions for enemies use during combat. Once the Queries were ready and tested I finished off with implementing the tasks. | <img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\BoomBTree.png" alt="EQS Debug">     |</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>With the new behaviour implemented it was time to provide the enemies the ability to find cover. For this I used Unreal Engine's Environment Query system. This allowed me to quickly find strategic postions for enemies use during combat. Once the Queries were ready and tested I finished off with implementing the tasks.</td>
+<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\EQSCover.png" alt="EQS Debug"></td>
+</tr>
+</tbody>
+</table>
 <h1 id="cut-content">Cut Content</h1>
 <table>
 <thead>
@@ -281,7 +289,7 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 </thead>
 <tbody>
 <tr>
-<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\BoomBTree.png" alt="Boss flowchart"></td>
+<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\MotherCombined.png" alt="Boss flowchart"></td>
 <td>At the beginning of the project we wanted to have a boss to finish off the level. With the boss being a big project both the other AI programmer and I worked on it. The boss was designed similarly to the rest. Starting off with a behaviour flow chart.</td>
 </tr>
 </tbody>
@@ -296,13 +304,16 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 <tbody>
 <tr>
 <td>The flow chart was once again followed by a BTree and blackboard. We even began implementing tasks. However, as it came time to really polish the enemy we realized we certain aspects of the boss came to late. As such, we decided to cut our losses as we did not feel we had the time to bring it to the level of quality we wanted and decided against ending the level with something that did not match the quality of the rest of the game.</td>
-<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\BoomBTree.png" alt="Boss image"></td>
+<td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\BTreeMother.png" alt="Boss image"></td>
 </tr>
 </tbody>
 </table>
 <h1 id="what-i-learned">What I learned</h1>
 <p>Throughout the project I learned Unreal Engine and worked with blueprint for the first time. During the early implementation our there were some troubles communicating with the enemy designer on the exact details. This was remedied by behaviour flow charts creating a middle ground between design and implementation.</p>
-<p>I also learned that I need to fully explore any engine I'm working with as best I can before implementing code. Having a full Unreal Engine's AI systems, especially the Environmental Query System, would have helped immensely with the first implementation. With what I know now I'm excited to see just how much I can accomplish and learn on my next projects.</p>
+<p>I also learned that I need to fully explore any engine I'm working with as best I can before implementing code. Having a better understanding of Unreal Engine's AI systems, especially the Environmental Query System, would have helped immensely with the first implementation and saved time on the final implementation.</p>
+<h1 id="links">Links</h1>
+<p>Email: <a href="mailto:CSOtten02@gmail.com">CSOtten02@gmail.com</a></p>
+<p>Itch: <a href="https://cameron-otten.itch.io/">itch</a></p>
 
             
             
