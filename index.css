@@ -62,6 +62,7 @@
 
 
 p {
+    font-size: 20;
     color: rgb(159, 159, 202);
     text-align: left;
     vertical-align: middle;
@@ -85,16 +86,24 @@ table
 {
     color: rgb(159, 159, 202);
     border-collapse: collapse;
-    border: 1px hidden;
+    border: 20px hidden;
 }
 
 thead
 {
     color: rgb(159, 159, 202);
     border-collapse: collapse;
-    border: 1px hidden;
+    border: 20px hidden;
 }
 
+hr.borderless
+{
+    border: hidden
+}
+
+hr{
+    border-color: rgb(159, 159, 202);
+}
 
 @media screen and (max-width:768px){
 
@@ -105,7 +114,18 @@ thead
       td{
         display: inline-block;
       }
-}
+    }
+    p {
+        font-size: 14;
+        color: rgb(159, 159, 202);
+        text-align: left;
+        vertical-align: middle;
+      }
+      
+      a{
+        color: rgb(159, 159, 202)
+      }
+
 
 /*
 .markdown-alert {

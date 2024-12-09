@@ -24,8 +24,8 @@
 <style>
             body {
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
-                font-size: 14px;
-                line-height: 1.6;
+                font-size: 20px;
+                line-height: 1.4;
             }
         </style>
         <style>
@@ -50,32 +50,18 @@
 }
 
 </style>
-<style>
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-note: #2f81f7;
-    --color-tip: #3fb950;
-    --color-warning: #d29922;
-    --color-severe: #db6d28;
-    --color-caution: #f85149;
-    --color-important: #a371f7;
-  }
-}
-
-</style>
 <link rel="stylesheet" href="index.css">
         
         </head>
         <body class="vscode-body vscode-light">
-            <hr>
-<h2 id="permalink">Permalink</h2>
-<p><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\Splash.png" alt="Project Splash image"></p>
+            <p><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\Splash.png" alt="Project Splash image"></p>
 <h1 id="project-description">Project Description</h1>
 <p>Project mercury is a fast paced first person shooter focused on advanced movement
 that aims to make the player feel like an experienced agent. Project mercury is set in the year of 2093 and the player is tasked with retrieving valuable data from Detroit which is now inhabited by only robots.</p>
 <h1 id="project-goals">Project Goals</h1>
 <p>The goal of this project was to show of the skills of the 14 people on the team and display the quality we could achieve in 5 months. Personally, I worked on the developing the enemy AI. With this being my first time working in Unreal Engine I had three goals in mind. First, learn to use Unreal Engine and apply my previous experience. Second, to grow my knowledge by developing AI for a new style of game.  Third, and finally, to show off my skills as an AI developer.</p>
 <h1 id="my-contributions">My Contributions</h1>
+<!-- I created two types of enemies. This first type is a simple enemy named Boom. This enemy waits around until it detects the player. Once it does it charges them and detonates its deadly surprise. This enemy's behaviour was simple and making it was my introduction to working in Unreal.   -->
 <table>
 <thead>
 <tr>
@@ -85,11 +71,12 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 </thead>
 <tbody>
 <tr>
-<td>I created two types of enemies. This first type is a simple enemy named Boom. This enemy waits around until it detects the player. Once it does it charges them and detonates its deadly surprise. This enemy's behaviour was simple and making it was my introduction to working in Unreal.</td>
+<td><strong>Boom Agent</strong> <br></br> <br>• Idles until detecting the player</br> <br> • Upon detection charges the player</br><br> • When close enough detonates a deadly surpise</br></td>
 <td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\Boom.png" alt="Boom Agent Example"></td>
 </tr>
 </tbody>
 </table>
+<!-- This next enemy type comes in three variants. This enemy type called the Patrol Agent. These enemies  are a classic guy with a gun style. Except in this case they're robots. Each variant patrols a set route until it detects the player then fires upon them with their weapon of choice. A classic assault rifle, a brutal shotgun, or a deadly sniper. Each makes decisions befitting their weapon, but all run off the same structure.  -->
 <table>
 <thead>
 <tr>
@@ -100,13 +87,15 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 <tbody>
 <tr>
 <td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\Patrol.png" alt="Patrol Agent example"></td>
-<td>This next enemy type comes in three variants. This enemy type called the Patrol Agent. These enemies  are a classic guy with a gun style. Except in this case they're robots. Each variant patrols a set route until it detects the player then fires upon them with their weapon of choice. A classic assault rifle, a brutal shotgun, or a deadly sniper. Each makes decisions befitting their weapon, but all run off the same structure.</td>
+<td><strong>Patrol Agent</strong> <br></br> <br>• Classic guy with a gun</br> <br> • Patrols a set route</br><br> • Wields a classic assault rifle, brutal shotgun, or deadly sniper.</br> <br> • Unique behaviours for each weapon.</br></td>
 </tr>
 </tbody>
 </table>
 <h1 id="early-designing">Early Designing</h1>
 <p>The first step for making any enemy is figuring out what enemy you want to make. What this means for me is talking with designers and those within the enemy pod of our team. With design being an iterative process we started with verbal communication and simple behaviours. This included things such as the early behaviours of the patrol agent. It had simple enough behaviour. Patrol a set of points, investigate sound, and shoot the player if it sees them. For me this was also a chance to see how my past experience with AI and enemy development translated into Unreal Engine.</p>
 <h1 id="first-implementation">First Implementation</h1>
+<!-- 
+I prefer a behaviour first approach building out the structure before implementing the functionality. So I started with a BTree its blackboard. While every agent's Btree has its own needs, the patrol variant follows the same structure. -->
 <table>
 <thead>
 <tr>
@@ -116,11 +105,12 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 </thead>
 <tbody>
 <tr>
-<td>I prefer a behaviour first approach building out the structure before implementing the functionality. So I started with a BTree its blackboard. While every agent's Btree has its own needs, the patrol variant follows the same structure.</td>
+<td><strong>Patrol Behaviour Trees</strong> <br></br> <br>• Started with a Behaviour tree and Blackboard</br> <br> • Made to be easily modifed for various weapons</br></td>
 <td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\FirstBTree.png" alt="BTree and blackboard combined image"></td>
 </tr>
 </tbody>
 </table>
+ <!-- The BTree and blackboard were of course followed by an AI Controller. This was followed by testing to ensure everything got called when expected. Testing here is especially important to catch bugs early before reusing the structure for other patrol agents. -->
 <table>
 <thead>
 <tr>
@@ -131,10 +121,11 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 <tbody>
 <tr>
 <td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\PerceptionOuterV1.png" alt="first iteration of perception handling"></td>
-<td>The BTree and blackboard were of course followed by an AI Controller. This was followed by testing to ensure everything got called when expected. Testing here is especially important to catch bugs early before reusing the structure for other patrol agents.</td>
+<td><strong>Early AI Controllers</strong> <br></br> <br>• AI controllers to run BTrees</br> <br> • preformed testing here to catch early bugs.</br></td>
 </tr>
 </tbody>
 </table>
+<!-- Finally, after testing is succesful, its time to implement the task functionality. This included working with our weapons programmer who provided me enemy versions of the guns which would be used by the patrol agents. Finished off with some more testing to make sure there were no immediate bugs. -->
 <table>
 <thead>
 <tr>
@@ -144,15 +135,16 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 </thead>
 <tbody>
 <tr>
-<td>Finally, after testing is succesful, its time to implement the task functionality. This included working with our weapons programmer who provided me enemy versions of the guns which would be used by the patrol agents. Finished off with some more testing to make sure there were no immediate bugs.</td>
+<td><strong>Functionality</strong> <br></br> <br>• Implemented after successful testing of behaviour</br> <br> • Used enemy version of the player's guns provided by the weapons programmer </br><br> • Followed by final testing before deploying</br></td>
 <td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\Implementation.png" alt=" Attacking task image"></td>
 </tr>
 </tbody>
 </table>
 <h1 id="challenges">Challenges</h1>
-<p>However, these enemies were naturally less interesting to fight. They moved and preformed as intended, but they left something to be desired. Nobody in a gun fight wants to stand in the open! So now the question came, how do I get an enemy to find cover?</p>
+<p>Due to their simplicity the enemies were naturally less interesting to fight. They moved and preformed as intended, but they left something to be desired. Nobody in a gun fight wants to stand in the open! So now the question becomes, how do I get an enemy to find cover?</p>
 <p>Later as more of the players actions made produced sound for the enemies they became overwhelmed and sometimes went towards the sound stimuli instead of attacking the player.</p>
 <h1 id="final-designs">Final Designs</h1>
+<!-- For the final design the enemy pod once again met this time creating flow charts for each enemy. With the new enemy behaviours created it was now time to address the challenges. -->
 <table>
 <thead>
 <tr>
@@ -163,11 +155,12 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 <tbody>
 <tr>
 <td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\flowchart.png" alt="Patrol Agent flow chart"></td>
-<td>For the final design the enemy pod once again met this time creating flow charts for each enemy. With the new enemy behaviours created it was now time to address the challenges.</td>
+<td><strong>Final Behaviour</strong> <br></br> <br>• The Enemy pod had a meeting to discuss final designs</br> <br> • Flow charts were used to describe the more complex behaviours</br><br> • Enemies now were required to make use of cover</br></td>
 </tr>
 </tbody>
 </table>
 <h1 id="final-implementation">Final Implementation</h1>
+<!-- For the final implementation I began by making a BTree based off the designed behaviour flow chart. While behaviour flow charts are nice, they are not a one to one translation to implementation. I created appropriate states to accomodate the behaviour. I followed by filling out each state with the appropriate tasks. I also made an accompanying blackboard. -->
 <table>
 <thead>
 <tr>
@@ -177,11 +170,12 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 </thead>
 <tbody>
 <tr>
-<td>For the final implementation I began by making a BTree based off the designed behaviour flow chart. While behaviour flow charts are nice, they are not a one to one translation to implementation. I created appropriate states to accomodate the behaviour. I followed by filling out each state with the appropriate tasks. I also made an accompanying blackboard.</td>
+<td><strong>New Behaviour Trees</strong> <br></br> <br>• Used the behaviour flow charts as a reference</br> <br> • Created states to accomodate the behaviour defined by the flow chart</br> <br> • Each state is filled out as needed to handle a section of the flow chart.</br><br> • New blackboards are also made to support the new behaviour trees </br></td>
 <td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\BTreeV2.png" alt="new BTree and blackboard"></td>
 </tr>
 </tbody>
 </table>
+<!-- The new BTree also created a need to update the perception handling. Creating the new perception handling also provided the gate to stop the agent from acknowledging sound detection while already having sight of the player. This is once again followed by testing. -->
 <table>
 <thead>
 <tr>
@@ -192,10 +186,11 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 <tbody>
 <tr>
 <td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\PerceptionV2.png" alt="Perception Handling"></td>
-<td>The new BTree also created a need to update the perception handling. Creating the new perception handling also provided the gate to stop the agent from acknowledging sound detection while already having sight of the player. This is once again followed by testing.</td>
+<td><strong>New AI Controllers</strong> <br></br> <br>• New AI Controllers are made to pair with the new behaviour trees</br> <br> • Perception handling is improved to accomodate the new state based behaviour trees</br> <br> • The improvements also addressed the challenge provided by sound detection </br><br> • Once again testing is preformed. </br></td>
 </tr>
 </tbody>
 </table>
+<!-- With the new behaviour implemented it was time to provide the enemies the ability to find cover. For this I used Unreal Engine's Environment Query system. This allowed me to quickly find strategic postions for enemies use during combat. Once the Queries were ready and tested I finished off with implementing the tasks. -->
 <table>
 <thead>
 <tr>
@@ -205,12 +200,13 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 </thead>
 <tbody>
 <tr>
-<td>With the new behaviour implemented it was time to provide the enemies the ability to find cover. For this I used Unreal Engine's Environment Query system. This allowed me to quickly find strategic postions for enemies use during combat. Once the Queries were ready and tested I finished off with implementing the tasks.</td>
+<td><strong>Cover System</strong> <br></br> <br>• Makes use of the Environmental Query System</br> <br> • Quickly finds strategic positions for enemies during combat</br> <br> • More testing is preformed to ensure enemy behaviour preforms as intended </br></td>
 <td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\EQSCover.png" alt="EQS Debug"></td>
 </tr>
 </tbody>
 </table>
 <h1 id="cut-content">Cut Content</h1>
+<!-- At the beginning of the project we wanted to have a boss to finish off the level. With the boss being a big project both the other AI programmer and I worked on it. The boss was designed similarly to the rest. Starting off with a behaviour flow chart. -->
 <table>
 <thead>
 <tr>
@@ -221,10 +217,11 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 <tbody>
 <tr>
 <td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\MotherCombined.png" alt="Boss flowchart"></td>
-<td>At the beginning of the project we wanted to have a boss to finish off the level. With the boss being a big project both the other AI programmer and I worked on it. The boss was designed similarly to the rest. Starting off with a behaviour flow chart.</td>
+<td><strong>Boss Design</strong> <br></br> <br>• A boss was orignally planned</br> <br> • Worked on with the other enemy programmer</br> <br> • The process also began with a behaviour flow chart. </br></td>
 </tr>
 </tbody>
 </table>
+<!-- The flow chart was once again followed by a BTree and blackboard. We even began implementing tasks. However, as it came time to really polish the enemy we realized we certain aspects of the boss came to late. As such, we decided to cut our losses as we did not feel we had the time to bring it to the level of quality we wanted and decided against ending the level with something that did not match the quality of the rest of the game. -->
 <table>
 <thead>
 <tr>
@@ -234,7 +231,7 @@ that aims to make the player feel like an experienced agent. Project mercury is 
 </thead>
 <tbody>
 <tr>
-<td>The flow chart was once again followed by a BTree and blackboard. We even began implementing tasks. However, as it came time to really polish the enemy we realized we certain aspects of the boss came to late. As such, we decided to cut our losses as we did not feel we had the time to bring it to the level of quality we wanted and decided against ending the level with something that did not match the quality of the rest of the game.</td>
+<td><strong>Behaviour implementation</strong> <br></br> <br>• Behaviour tree and blackboard created using the flow chart as a reference</br> <br> • Rough functionality was implemented </br>   <br> • Certain necessary aspects were finished too late </br> <br> • Final decision was to cut the boss and not end the game with something that did not match the rest in quality </br></td>
 <td><img src="file:///c:\Users\gamep\Documents\GitHub\Frostbite8283.github.io\BTreeMother.png" alt="Boss image"></td>
 </tr>
 </tbody>
