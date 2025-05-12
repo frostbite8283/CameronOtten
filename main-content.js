@@ -8,7 +8,7 @@ function toggleContent(targetId) {
             content.classList.add('active-content');
             activeContentId = targetId;
             if (content.dataset.iframeContent === 'true' && !content.dataset.loaded) {
-                loadIframe('/' + targetId + '/' + targetId + '.html', targetId);
+                loadIframe(targetId + '/' + targetId + '.html', targetId);
                 content.dataset.loaded = true; // Mark as loaded
             }
         } else {
