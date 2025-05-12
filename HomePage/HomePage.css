@@ -1,0 +1,7 @@
+﻿#pdf {
+    display: flex; /* Ensures it behaves like a block-level element for centering */
+    width: 100%; /* Sets the width to 60% of its parent container */
+    height: 100%;
+    margin-left: auto; /* Centers the element horizontally */
+    margin-right: auto; /* Centers the element horizontally */
+}

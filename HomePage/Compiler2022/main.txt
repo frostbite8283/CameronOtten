@@ -1,0 +1,524 @@
+import ply.lex as lex
+import ply.yacc as yacc
+import uuid
+
+'''translates valid input to metrics'''
+class Translator:
+    # initiate empty tree, metric dict and ID,
+    # Expects dictionary of Column names and types {NAME:TYPE} - types: INTEGER,FLOAT,BOOLEAN
+    # add prior metrics add met key,type,value {VarName:UUID},{VarName:Type}, {UUID: metric}
+    def __init__(self,colNames = {}, metKey = {},metTypes = {}, metValues = {}):
+        self.names = colNames
+        self.names.update(metTypes)
+        self.metrics = metValues
+        self.metricKey = metKey
+        self.tree = ()
+        self.met_num = 1
+        self.met_name = ""
+        self.ERROR = False
+
+    # translates given the class tree
+    # contains lex and yacc rules
+    def translate(self,text,name="METRIC",debug=False):
+        self.met_name = name
+        # reserved word dict {word:TOKEN}
+        # words are case-sensitive
+        reserved = {
+           'if' : 'IF',
+           'then' : 'THEN',
+           'else' : 'ELSE',
+           'while' : 'WHILE',
+            'and' : 'AND',
+            'or' : 'OR',
+            'isnull' : 'ISNULL',
+            'not' : 'NOT',
+            "average": "AVERAGE",
+            "count":"COUNT",
+            "max":"MAX",
+            "mean":"MEAN",
+            "min":"MIN",
+            "sum":"SUM",
+
+            'true' : 'BOOLEAN',
+            'false' : 'BOOLEAN'
+        }
+
+        # add Column names to reserved words
+        reserved.update(self.names)
+
+        # List of tokens for LEX
+        tokens = [
+            # Literals (identifier, integer constant, float constant, string constant, char const)
+            'ID', 'TYPEID', 'INTEGER', 'FLOAT', 'STRING', 'CHARACTER',
+
+            # Operators (+,-,*,**,/,//,%,|,~,^,<<,>>, &&, !, <, <=, >, >=, ==, !=)
+            'PLUS', 'MINUS', 'TIMES', 'POWER', 'DIVIDE', 'RDIVIDE','MODULO',
+            'XOR', 'LSHIFT', 'RSHIFT',
+            'LOR', 'LAND', 'LNOT',
+            'LT', 'LE', 'GT', 'GE', 'EQ', 'NE',
+
+            # Assignment (=, *=, /=, %=, +=, -=, <<=, >>=, &=, ^=, |=)
+            'EQUALS', 'TIMESEQUAL', 'DIVEQUAL', 'MODEQUAL', 'PLUSEQUAL', 'MINUSEQUAL',
+            'LSHIFTEQUAL','RSHIFTEQUAL', 'ANDEQUAL', 'XOREQUAL', 'OREQUAL',
+
+            # Increment/decrement (++,--)
+            'INCREMENT', 'DECREMENT',
+
+            # Structure dereference (->)
+            'ARROW',
+
+            # Ternary operator (?)
+            'TERNARY',
+
+            # Delimeters ( ) [ ] { } , . ; :
+            'LPAREN', 'RPAREN',
+            'LBRACKET', 'RBRACKET',
+            'LBRACE', 'RBRACE',
+            'COMMA', 'PERIOD', 'SEMI', 'COLON',
+
+            # Ellipsis (...)
+            'ELLIPSIS',
+        ] + list(reserved.values()) + list(self.names.values())
+
+        tokens = tuple(tokens)
+
+        # Identifying tokens
+
+        # Operators
+        t_PLUS             = r'\+'
+        t_MINUS            = r'-'
+        t_POWER            = r'\*\*'
+        t_TIMES            = r'\*'
+        t_RDIVIDE          = r'//'
+        t_DIVIDE           = r'/'
+        t_MODULO           = r'%'
+        t_OR               = r'\|'
+        t_XOR              = r'\^'
+        t_LSHIFT           = r'<<'
+        t_RSHIFT           = r'>>'
+        t_LOR              = r'\|\|'
+        t_LAND             = r'&&'
+        t_LNOT             = r'!'
+        t_LT               = r'<'
+        t_GT               = r'>'
+        t_LE               = r'<='
+        t_GE               = r'>='
+        t_EQ               = r'=='
+        t_NE               = r'!='
+
+        # Assignment operators
+
+        t_EQUALS           = r'='
+        t_TIMESEQUAL       = r'\*='
+        t_DIVEQUAL         = r'/='
+        t_MODEQUAL         = r'%='
+        t_PLUSEQUAL        = r'\+='
+        t_MINUSEQUAL       = r'-='
+
+
+        # ->
+        t_ARROW            = r'->'
+
+        # ?
+        t_TERNARY          = r'\?'
+
+        # Delimeters
+        t_LPAREN           = r'\('
+        t_RPAREN           = r'\)'
+        t_LBRACKET         = r'\['
+        t_RBRACKET         = r'\]'
+        t_LBRACE           = r'\{'
+        t_RBRACE           = r'\}'
+        t_COMMA            = r','
+        t_PERIOD           = r'\.'
+        t_SEMI             = r';'
+        t_COLON            = r':'
+        t_ELLIPSIS         = r'\.\.\.'
+
+        # Identifiers
+        def t_ID(t):
+            r'[a-zA-Z_][a-zA-Z_0-9]*'
+            t.type = reserved.get(t.value,'ID')    # Check for reserved words and variable names
+            return t
+
+        # Integer literal
+        t_INTEGER = r'\d+([uU]|[lL]|[uU][lL]|[lL][uU])?'
+
+        # Floating literal
+        t_FLOAT = r'((\d+)(\.\d+)(e(\+|-)?(\d+))? | (\d+)e(\+|-)?(\d+))([lL]|[fF])?'
+
+        # String literal
+        t_STRING = r'\"([^\\\n]|(\\.))*?\"'
+
+        # Character constant 'c' or L'c'
+        t_CHARACTER = r'(L)?\'([^\\\n]|(\\.))*?\''
+
+        # Define a rule so we can track line numbers
+        def t_newline(t):
+            r'\n+'
+            t.lexer.lineno += len(t.value)
+
+        # A string containing ignored characters (spaces and tabs)
+        t_ignore  = ' \t'
+
+        # Error handling rule
+        def t_error(t):
+            print("Illegal character '%s'" % t.value[0])
+            t.lexer.skip(1)
+
+
+        #create lexer
+        lexer = lex.lex()
+
+        # set up parser precedence
+        precedence = (
+            ('left', 'PLUS', 'MINUS'),
+            ('left', 'TIMES', 'DIVIDE'),
+            ('left', 'POWER'),
+            ('right', 'UMINUS'),
+            ('right', 'ISNULL'),
+            ('left','LPAREN')
+        )
+
+
+        # exit statement
+        def p_statement_expr(p):
+            'statement : expression'
+            self.tree = p[1]
+
+        # binary numeric experssions
+        def p_expression_numexpression(p):
+            '''num_expression : num_expression PLUS num_expression
+                          | num_expression MINUS num_expression
+                          | num_expression TIMES num_expression
+                          | num_expression DIVIDE num_expression
+                          | num_expression RDIVIDE num_expression
+                          | num_expression MODULO num_expression
+                          | num_expression POWER num_expression'''
+
+            p[0] = ('binary',"double",p[2],p[1],p[3],)
+
+
+        # NOTE add string expressions for EQUALS and NOT EQUALS
+
+        # Binary relation expressions
+        def p_expression_rel_expression(p):
+            '''rel_expression : num_expression GT num_expression
+                               | num_expression LT num_expression
+                               | num_expression GE num_expression
+                               | num_expression LE num_expression
+
+                               | rel_expression EQ rel_expression
+                               | num_expression EQ num_expression
+
+                               | rel_expression NE rel_expression
+                               | num_expression NE num_expression
+
+                               | rel_expression AND rel_expression
+                               | rel_expression OR rel_expression'''
+
+            p[0] = ('binary', 'boolean', p[2], p[1], p[3])
+
+        # isnull relation expression
+        def p_expression_isnull(p):
+            '''rel_expression : NOT ISNULL expression
+                              | NOT ISNULL num_expression
+                              | ISNULL expression
+                              | ISNULL num_expression '''
+
+            if p[1] == "not":
+                p[0] = ('null', 'boolean', p[3], True)
+            else:
+                p[0] = ('null','boolean',p[2],False)
+
+        def p_expression_average(p):
+            '''num_expression : AVERAGE num_expression'''
+
+            p[0] = ("average", "double", p[2])
+
+        def p_expression_count(p):
+            '''num_expression : COUNT num_expression'''
+
+            p[0] = ("count", "double", p[2])
+
+        def p_expression_max(p):
+            '''num_expression : MAX num_expression'''
+
+            p[0] = ("max", "double", p[2])
+
+        def p_expression_min(p):
+            '''num_expression : MIN num_expression'''
+
+            p[0] = ("min", "double", p[2])
+
+        def p_expression_sum(p):
+            '''num_expression : SUM num_expression'''
+
+
+            p[0] = ("sum", "double", p[2])
+
+        # check for negative numbers EX: -19
+        def p_expression_uminus(p):
+            "expression : '-' expression %prec UMINUS"
+            p[0] = -p[2]
+
+        # a base parenthesis group
+        def p_expression_group(p):
+            '''expression : LPAREN expression RPAREN'''
+
+            p[0] = p[2]
+
+        # number expression group
+        def p_num_expression_group(p):
+            "num_expression : LPAREN num_expression RPAREN"
+
+            p[0] = p[2]
+
+        # relation expression group
+        def p_rel_expression_group(p):
+            "rel_expression : LPAREN rel_expression RPAREN"
+
+            p[0] = p[2]
+
+        # number to number expression
+        def p_num_expression_number(p):
+            '''num_expression  : number'''
+
+            p[0] = p[1]
+
+        #number expression to expression
+        def p_num_expression(p):
+            '''expression : num_expression'''
+
+            p[0] = p[1]
+
+        # relation expression to expression
+        def p_rel_expression(p):
+            '''expression : rel_expression'''
+            p[0] = p[1]
+
+        # Boolean to relation expression
+        def p_rel_expression_bool(p):
+            '''rel_expression : BOOL'''
+
+            p[0] = p[1]
+
+        # integer to number
+        # Col to number
+        def p_number_int(p):
+            '''number  : INTEGER
+                       | LBRACKET INTEGER RBRACKET'''
+
+            if p[1] == '[':
+                p[0] = [p[2], 'attribute']
+
+            elif "METRIC" in p[1]:
+                p[0] = ["METRIC:" + str(self.metricKey[p[1]]),"METRIC"]
+
+            else:
+                p[0] = [p[1], 'INTEGER']
+
+        # float to number
+        # col to number
+        def p_number_float(p):
+            '''number  : FLOAT
+                       | LBRACKET FLOAT RBRACKET'''
+
+            if p[1] == '[':
+                p[0] = [p[2], "attribute"]
+
+            elif "METRIC" in p[1]:
+                p[0] = ["METRIC:" + str(self.metricKey[p[1]]),"METRIC"]
+
+            else:
+                p[0] = [p[1], 'FLOAT']
+
+        # Bool and bool col check
+        def p_bool(p):
+            '''BOOL : LBRACKET BOOL RBRACKET
+                    | BOOLEAN'''
+
+            if p[1] == '[':
+                p[0] = [p[2],'attribute']
+
+            elif "METRIC" in p[1]:
+                p[0] = ["METRIC:" + str(self.metricKey[p[1]]),"METRIC"]
+
+            else:
+                p[0] = [p[1],'BOOL']
+
+        #not used currently
+        def p_expression_ID(p):
+            "expression : ID"
+            try:
+                p[0] = self.metrics[p[1]]
+
+            except LookupError:
+                print("Undefined name '%s'" % p[1])
+                p[0] = 0
+
+        #error handling
+        def p_error(p):
+            if p:
+                print("Syntax error at '%s'" % p.value)
+            else:
+                print("Syntax error at EOF")
+
+        parser = yacc.yacc()
+
+        # parse input
+        def parse(data, debug=0):
+            parser.error = 0
+            p = parser.parse(data, debug=debug)
+            if parser.error:
+                return None
+            return p
+
+        parse(text,debug)
+        # print for debug
+        if debug:
+            print("TREE")
+            print(self.tree)
+            print("\nOUTPUT")
+            print(self.output(self.tree,uuid.uuid4()))
+            print("\nNAMES")
+            print(T.names)
+            print("\nMETRICS")
+            print(str(self.metrics))
+            print("METRIC KEYS")
+            print(str(self.metricKey) + "\n\n")
+        else:
+            self.output(self.tree, uuid.uuid4())
+            print("METRICS: " + str(self.metricKey.keys()))
+
+        # print ouput
+        if self.ERROR:
+            print("ERROR: Expected Attribute")
+            print("METRIC NOT ADDED")
+        else:
+            print("Created Metric: " + self.met_name + str(self.met_num - 1))
+            print(self.metrics[self.metricKey[self.met_name + str(self.met_num - 1)]])
+
+    '''Takes the tree and translates to output dictionary'''
+    def output(self, tree, ID):
+
+        # check operator type
+
+        if tree[0] == "null":
+
+            # get operator information
+            myType = tree[0]
+            myDataType = tree[1]
+
+            # get attributes
+            myAttributes = []
+            if tree[2][1] == "attribute":
+                myAttributes += [tree[2][0]]
+
+            # get args
+            myArgs = self.output(tree[2],uuid.uuid4())
+
+            # compile rules
+            self.metrics.update({ID: {"type": myType,
+                                      "attributes" : myAttributes,
+                                       "data_type": myDataType,
+                                       "arguments": {"value": myArgs,"not":tree[3]}}})
+
+            # add metric data for future runs
+            self.names.update({self.met_name + str(self.met_num): self.typeToToken(myDataType)})
+            self.metricKey.update({self.met_name + str(self.met_num): ID})
+            self.met_num += 1
+            return {"type": "METRIC", "value": "METRIC" + str(ID)}
+
+        #METRIC NOT TESTED, ASSUMED OUTPUT ATTRIBUTE
+        elif tree[0] in['average','count','max','mean','min','sum']:
+            # get operator information
+            myType = tree[0]
+            myDataType = tree[1]
+
+            # get attributes
+            myAttributes = []
+            try:
+                tree[2][1][0]
+
+            except:
+                if tree[2][1] == "attribute":
+                    myAttributes += [tree[2][0]]
+                    print("test")
+                else:
+                    self.ERROR = True
+                    print("ERROR: Expected Attribute got:" + tree[2][1])
+                    exit()
+
+            # get args
+            myArgs = self.output(tree[2], uuid.uuid4())
+
+            # compile rules
+            self.metrics.update({ID: {"type": myType,
+                                      "attributes": myAttributes,
+                                      "data_type": myDataType,
+                                      "arguments": {"value": myArgs}}})
+            # Add metric data for future runs
+            self.names.update({self.met_name + str(self.met_num): self.typeToToken(myDataType)})
+            self.metricKey.update({self.met_name + str(self.met_num): ID})
+            self.met_num += 1
+
+            return {"type": "METRIC", "value": "METRIC:" + str(ID)}
+
+        elif tree[0] == "binary":
+
+            # get operator information
+            myType = tree[0]
+            myDataType = tree[1]
+
+            # get attributes
+            myAttributes = []
+            if tree[3][1] == "attribute":
+                myAttributes += [tree[3][0]]
+            if tree[4][1] == "attribute":
+                myAttributes += [tree[4][0]]
+
+            # create arguments
+            myArgs = {"operator": str(tree[2]),
+                      "left": self.output(tree[3], uuid.uuid4()),
+                      "right": self.output(tree[4], uuid.uuid4())}
+
+            # compile rules
+            self.metrics.update({ID: {"type": myType,
+                                      "attributes": myAttributes,
+                                      "data_type": myDataType,
+                                      "arguments": myArgs}})
+
+            # Add metric data for future runs
+            self.names.update({self.met_name + str(self.met_num):self.typeToToken(myDataType)})
+            self.metricKey.update({self.met_name + str(self.met_num): ID})
+            self.met_num += 1
+
+            return {"type": "METRIC", "value": "METRIC:" + str(ID) }
+
+        else:
+            # return base values to metric
+            return {"type": tree[1], "value": tree[0]}
+
+    # turns metric type to metric token type
+    def typeToToken(self,x):
+        if x == "double":
+            return "FLOAT"
+        if x == "int":
+            return "INTEGER"
+        if x == "boolean":
+            return "BOOLEAN"
+
+async def main():
+    T = Translator({'MyFloatMetric': 'FLOAT', 'COL2': 'INTEGER'})
+    run = True
+    while run:
+        text = await input('Translate statement: ')
+        name = await input('Assign metric name: ')
+        T.translate(text,name=name,debug=True)
+        again = input("again? ")
+        if again == "no":
+            run = False
+
+
+result = await main()

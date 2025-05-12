@@ -1,0 +1,6 @@
+async def main():
+    name = await input("Please enter your name: ")
+    print(f"Hello, {name}!")
+    return f"Processed name: {name}"
+
+result = await main()

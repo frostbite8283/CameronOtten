@@ -1,0 +1,46 @@
+import ply.lex as lex
+import ply.yacc as yacc
+
+reserved = {
+    'if': 'IF',
+    'else': 'ELSE',
+    'while': 'WHILE',
+}
+
+tokens = ('NUMBER', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'LPAREN', 'RPAREN', 'NEWLINE') + tuple(reserved.values())
+
+lexer_spec = [
+    ('PLUS', r'\+'),
+    ('MINUS', r'-'),
+    ('TIMES', r'\*'),
+    ('DIVIDE', r'/'),
+    ('LPAREN', r'\('),
+    ('RPAREN', r'\)'),
+    ('NUMBER', r'\d+'),
+    ('IF', r'if'),
+    ('ELSE', r'else'),
+    ('WHILE', r'while'),
+    ('ignore', r' \t'),
+    ('NEWLINE', r'\n+'),
+    ('error', r'.'),
+]
+
+def t_NUMBER(t):
+    t.value = int(t.value)
+    return t
+
+lexer = lex.lex(None, lexer_spec) # Might need a different function here
+
+precedence = (
+    ('left', 'PLUS', 'MINUS'),
+    ('left', 'TIMES', 'DIVIDE'),
+)
+
+grammar_rules = [
+    ('expression', ('expression', 'PLUS', 'term'), lambda p: p[0] + p[2]),
+    ('expression', ('expression', 'MINUS', 'term'), lambda p: p[0] - p[2]),
+    ('expression', ('term',), lambda p: p[0]),
+    # ... more rules ...
+]
+
+parser = yacc.yacc(None, grammar_rules, precedence, tokens) # Might need a different function

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Centered SVG</title>
+		<style>
+            body {
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background-size: cover;
+                height: 80%;
+                background-color: rgb(255, 255, 255);
+            }
+
+			#svg-container {
+				width: 80%;
+				height: 80vh; /* Adjust as needed */
+			}
+
+            #my-svg {
+                display: block;
+                width: 100%;
+                height: 100%;
+            }
+			/* Make SVG fill its container */
+		</style>
+	</head>
+	<body>
+		<div id="svg-container">
+			<img id="my-svg" src="Resume.svg" alt="Resume Document">
+		</div>
+	</body>
+</html>
