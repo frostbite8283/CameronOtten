@@ -32,3 +32,5 @@ function loadIframe(filePath, targetElementId) {
         console.error(`Target element with ID '${targetElementId}' not found.`);
     }
 }
+
+toggleContent('Profile');

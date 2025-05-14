@@ -1,0 +1,76 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgb(5, 33, 43);
+}
+
+.profile-container {
+    text-align: center;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.profile-name {
+    margin: 0;
+    color: #a0d468;
+}
+
+.profile-title {
+    margin-top: 5px;
+    color: #a0d468;
+    overflow: hidden;
+    position: relative;
+    width: 300px; /* Adjust as needed */
+    height: 30px; /* Adjust as needed */
+}
+
+#sliding-text {
+    position: absolute;
+    white-space: nowrap;
+    top: 0;
+    left: 100%;
+    line-height: 30px; /* Match container height */
+}
+
+.slide-in {
+    animation: slideIn 0.5s ease-out forwards;
+}
+
+.slide-out {
+    animation: slideOut 0.5s ease-in forwards;
+}
+
+@keyframes slideIn {
+    from {
+        left: 100%;
+        opacity: 0;
+    }
+
+    to {
+        left: 0;
+        opacity: 1;
+    }
+}
+
+@keyframes slideOut {
+    from {
+        left: 0;
+        opacity: 1;
+    }
+
+    to {
+        left: -100%;
+        opacity: 0;
+    }
+}
+

@@ -11,7 +11,9 @@
 <body>
     <div class="page-container">
         <div class="toolbar" id="toolbar">
-            <img src="placeholder-image.png" alt="Toolbar Image" class="toolbar-image">
+            <a href="#" onclick="toggleContent('Profile')">
+                <img src="placeholder-image.png" alt="Toolbar Image" class="toolbar-image">
+            </a>
             <div class="toolbar-padding"></div>
 
             <div class="dropdown">
@@ -48,10 +50,13 @@
         </div>
 
         <div class="main-content-wrapper" id="main-content">
-            <div class="main-content active-content" id="ProjectMercury" data-iframe-content="true">
+            <div class="main-content active-content" id="Profile" data-iframe-content="true">
                 <div id="iframe-container"></div>
             </div>
-            <div class="main-content active-content" id="Compiler2022" data-iframe-content="true">
+            <div class="main-content" id="ProjectMercury" data-iframe-content="true">
+                <div id="iframe-container"></div>
+            </div>
+            <div class="main-content" id="Compiler2022" data-iframe-content="true">
                 <div id="iframe-container"></div>
             </div>
             <div class="main-content" id="Resume" data-iframe-content="true">
