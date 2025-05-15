@@ -3,4 +3,20 @@ body {
     margin-left: 10%;
     margin-right: 10%;
     border: 1px hidden;
+    align-items: center;
+    align-content: center;
+    color: #f0f8ea;
+}
+
+
+h1 {
+    color: #a0d468;
+}
+
+h2 {
+    color: #a0d468;
+}
+
+h3 {
+    color: #a0d468;
 }

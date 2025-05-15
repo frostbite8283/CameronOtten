@@ -19,9 +19,20 @@
     box-sizing: border-box;
 }
 
+    .toolbar a {
+        display: flex;
+        height: 5%; /* Ensure the anchor takes full toolbar height */
+    }
+
 .toolbar-image {
-    width: 100%;
+    width: auto; /* Make the image take the full width of its container */
+    height: auto; /* Maintain aspect ratio initially */
+    border-radius: 50%; /* Make it a circle */
+    object-fit: cover; /* Crop the image to fit the circular mask */
+    aspect-ratio: 1 / 1; /* Ensure the container is a square */
     display: block;
+    max-width: 200px;
+    margin-left: 10%;
 }
 
 .toolbar-padding {

@@ -3,17 +3,69 @@
 <head>
     <title>Compiler 2022</title>
     <link rel="stylesheet" href="Compiler2022.css">
-    <!--<script src="https://cdn.jsdelivr.net/pyodide/v0.25.0/full/pyodide.js"></script>-->
-    <style>
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', system-ui, 'Ubuntu', 'Droid Sans', sans-serif;
-            font-size: 20px;
-            line-height: 1.4;
-            color: rgb(159, 159, 202);
-        }
-    </style>
 </head>
 <body>
-    This page is currently a work in progress
+    <h1>Complier 2022</h1>
+    This is an example of  the compiler I developed in 2022 as is from the state it was in when presented to clients.
+    <br />
+    <h2>Goal: compile SQL like statements into JSON for processing.</h2>
+    <br /><br />
+
+    <h2>Requirements:</h2>
+    <br />
+    - Allow the creation and use of custom metrics
+    <br />
+    - preform lexical, syntax and semantic analysis
+    <br />
+    - use python and ReGex
+    <br />
+    - give each a UUID and a readable name
+    <br />
+    - Ensure vairables don't overlap
+    <br />
+    - Compile to a JSON structure for further processing
+    indicating operator and input
+    <br /><br />
+
+    <h2>My implementation:</h2>
+    <br />
+    - use a dictionary to allow additional metrics.
+    <br />
+    - append the strings to the TOKENS list to reserve the words
+    <br />
+    - Use ReGex to compress and evaluate statements.
+    <br />
+    - Generate a UUID using uuid library and place in the JSON structure
+    <br />
+    - Add a counter which adds on to the end of every created metric
+    to ensure no overlap.
+    <br />
+    - During evaluation create a JSON struct
+    <br /><br />
+
+    <h2>Final Result:<br /></h2>
+    A basic one line compiler with the following structure.
+    <br />
+    1. input: statement
+    <br />
+    2. input: name
+    <br />
+    4. output: list of metrics
+    <br />
+    3. output: errors, or the metric and its JSON structure.
+    <br />
+    4. Debug output: the full JSON structure created and stored.
+    <br />
+
+    <h1>Examples</h1>
+    <h3>Algebraic Input</h3>
+    <img src="ExampleInput 1.png">
+
+    <h3>Algebraic Output</h3>
+    <img src="ExampleOutput 1.png">
+    <h3>Boolean Input</h3>
+    <img src="ExampleInput 2.png">
+    <h3>Boolean Output</h3>
+    <img src="ExampleOutput 2.png">
 </body>
 </html>

@@ -3,24 +3,23 @@
   "WorkspaceRootPath": "C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\ProjectMercury\\ProjectMercury.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ProjectMercury\\ProjectMercury.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\GameP\\Desktop\\lexer\\main.py||{8B382828-6202-11D1-8870-0000F87579D2}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\Compiler2022\\Compiler2022.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Compiler2022\\Compiler2022.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\FunResume\\FunResume.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:FunResume\\FunResume.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\main-content.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:main-content.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\Compiler2022\\Compiler2022.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Compiler2022\\Compiler2022.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\Profile\\Profile.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Profile\\Profile.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,14 +34,40 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ProjectMercury.html",
-              "DocumentMoniker": "C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\ProjectMercury\\ProjectMercury.html",
-              "RelativeDocumentMoniker": "ProjectMercury\\ProjectMercury.html",
-              "ToolTip": "C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\ProjectMercury\\ProjectMercury.html",
-              "RelativeToolTip": "ProjectMercury\\ProjectMercury.html",
-              "ViewState": "AgIAACMAAAAAAAAAAAAIwC4AAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-05-12T11:58:53.99Z",
+              "Title": "main.py",
+              "DocumentMoniker": "C:\\Users\\GameP\\Desktop\\lexer\\main.py",
+              "RelativeDocumentMoniker": "..\\..\\..\\Desktop\\lexer\\main.py",
+              "ToolTip": "C:\\Users\\GameP\\Desktop\\lexer\\main.py",
+              "RelativeToolTip": "..\\..\\..\\Desktop\\lexer\\main.py",
+              "ViewState": "AgIAAIgBAAAAAAAAAAAlwJQBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2025-05-15T01:13:23.033Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Profile.css",
+              "DocumentMoniker": "C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\Profile\\Profile.css",
+              "RelativeDocumentMoniker": "Profile\\Profile.css",
+              "ToolTip": "C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\Profile\\Profile.css",
+              "RelativeToolTip": "Profile\\Profile.css",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAB0AAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-15T00:53:02.608Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Compiler2022.css",
+              "DocumentMoniker": "C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\Compiler2022\\Compiler2022.css",
+              "RelativeDocumentMoniker": "Compiler2022\\Compiler2022.css",
+              "ToolTip": "C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\Compiler2022\\Compiler2022.css",
+              "RelativeToolTip": "Compiler2022\\Compiler2022.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-15T00:52:54.285Z",
               "EditorCaption": ""
             },
             {
@@ -53,45 +78,23 @@
               "RelativeDocumentMoniker": "Compiler2022\\Compiler2022.html",
               "ToolTip": "C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\Compiler2022\\Compiler2022.html",
               "RelativeToolTip": "Compiler2022\\Compiler2022.html",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAABOAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-05-12T11:58:44.059Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "FunResume.html",
-              "DocumentMoniker": "C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\FunResume\\FunResume.html",
-              "RelativeDocumentMoniker": "FunResume\\FunResume.html",
-              "ToolTip": "C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\FunResume\\FunResume.html",
-              "RelativeToolTip": "FunResume\\FunResume.html",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-05-12T11:58:35.963Z"
+              "WhenOpened": "2025-05-15T00:52:48.262Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "main-content.js",
-              "DocumentMoniker": "C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\main-content.js",
-              "RelativeDocumentMoniker": "main-content.js",
-              "ToolTip": "C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\main-content.js",
-              "RelativeToolTip": "main-content.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAmAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-05-12T11:45:15.101Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "index.html",
               "DocumentMoniker": "C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\index.html",
               "RelativeDocumentMoniker": "index.html",
               "ToolTip": "C:\\Users\\GameP\\Documents\\GitHub\\CameronOtten\\index.html",
               "RelativeToolTip": "index.html",
-              "ViewState": "AgIAAC8AAAAAAAAAAAAAAEQAAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-05-12T11:44:59.16Z"
+              "WhenOpened": "2025-05-14T22:22:18.211Z",
+              "EditorCaption": ""
             }
           ]
         }
